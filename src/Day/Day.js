@@ -9,7 +9,7 @@ const Day = () => {
   return (
     <div>
       <h1>This is training day {id}</h1>
-      <div onClick={() => history.push(`/training/${id}/${exercise}`)}>
+      <div onClick={() => history.push(`/training/${id}`)}>
         Start Training
       </div>
     </div>

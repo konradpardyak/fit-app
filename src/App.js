@@ -12,7 +12,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" children={<Menu />} />
         <Route path="/day/:id" children={<Day />} />
-        <Route path="/training/:id/:exercise" children={<Training />} />
+        <Route path="/training/:id/" children={<Training />} />
         <Route path="/settings" children={<Settings />} />
       </Switch>
     </div>

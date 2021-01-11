@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setProgress } from "../redux/ducks/progress";
 
 const Training = () => {
-  const {id, exercise} = useParams();
+  const {id} = useParams();
   const dispatch = useDispatch();
 
   const handleSetProgress = () => {
@@ -14,7 +14,7 @@ const Training = () => {
   return (
     <div>
       <h1>This is training</h1>
-      <h2>exercise:{exercise} day:{id}</h2>
+      <h2>exercise day:{id}</h2>
       <button onClick={handleSetProgress}>Set progress to {id}</button>
     </div>
   );
