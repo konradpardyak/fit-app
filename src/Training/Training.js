@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setProgress } from "../redux/ducks/progress";
+import Ready from './Ready';
+import Train from './Train';
+import Break from './Break';
 
 const Training = () => {
   const {id} = useParams();
-  const dispatch = useDispatch();
+  const [current, setCurrent] = useState(null);
+  const [doBreak, setDoBreak] = useState(false);
 
-  const handleSetProgress = () => {
-    dispatch(setProgress(id));
-  }
+  useEffect(() => {
+    return () => {
+      setCurrent(null);
+    }
+  }, []);
 
   return (
     <div>
-      <h1>This is training</h1>
-      <h2>exercise day:{id}</h2>
-      <button onClick={handleSetProgress}>Set progress to {id}</button>
+      {
+        current == null ? (<Ready setCurrent={setCurrent}/>) :
+        doBreak ? (<Break current={current} setDoBreak={setDoBreak} id={id} />) : (<Train current={current} setCurrent={setCurrent} setDoBreak={setDoBreak} id={id} />)
+        }
     </div>
   );
 }
