@@ -1,10 +1,9 @@
-import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+
 import Menu from './Menu/Menu';
 import Day from './Day/Day';
 import Training from './Training/Training';
 import Settings from './Settings/Settings';
-
 
 const App = () => {
   return (

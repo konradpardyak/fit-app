@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
 
 const Ready = (props) => {
-  const {id} = useParams();
-  const {setCurrent} = props;
+  const {setCurrent, id} = props;
 
   const [counter, setCounter] = useState(5);
 

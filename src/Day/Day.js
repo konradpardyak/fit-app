@@ -1,10 +1,8 @@
-import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 
 const Day = () => {
   const {id} = useParams();
-  const exercise = 3;
   let history = useHistory();
   return (
     <div>

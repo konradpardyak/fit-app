@@ -1,7 +1,7 @@
-import React from 'react';
-import DayCard from './DayCard';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
+import DayCard from './DayCard';
 
 const Menu = () => {
   const progress = useSelector((state) => state.progress.progress);

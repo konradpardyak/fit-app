@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch } from "react-redux";
 import { setProgress } from "../redux/ducks/progress";
 
