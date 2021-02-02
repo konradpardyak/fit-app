@@ -5,14 +5,17 @@ import DayCard from './DayCard';
 
 const Menu = () => {
   const progress = useSelector((state) => state.progress.progress);
+  const plan = useSelector((state) => state.plan.plan);
   let history = useHistory();
   return (
     <div>
       <h1>This is menu</h1>
       <p>Current progress: {progress}</p>
-      <DayCard id={1} />
-      <DayCard id={2} />
-      <DayCard id={3} />
+
+      {plan.days.map((day) => (
+        <DayCard id={day.dayId} key={day.dayId} />
+      ))}
+      
       <div onClick={() => history.push(`/settings`)}>Settings</div>
     </div>
   );
