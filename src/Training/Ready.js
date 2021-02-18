@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 
 const Ready = (props) => {
-  const {setCurrent, id} = props;
+  const {setCurrent, id, todayTraining} = props;
+  const {name, desc} = todayTraining[0];
 
   const [counter, setCounter] = useState(5);
 
   useEffect(() => {
     const timeout = setTimeout(() => setCounter(counter - 1), 1000);
-    if(counter == 0){
+    if(counter === 0){
       handleSetCurrent();
     }
     return () => clearTimeout(timeout);
@@ -22,8 +23,8 @@ const Ready = (props) => {
       <h1>Day {id}</h1>
       <p>Ready? {counter} </p>
       <button onClick={handleSetCurrent}>Start!</button>
-      <p>Exercise 1</p>
-      <p>Description</p>
+      <p>Get ready for exercise 1 - {name}</p>
+      <p>{desc}</p>
     </div>
   )
 }

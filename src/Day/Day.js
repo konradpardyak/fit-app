@@ -1,8 +1,8 @@
 import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
+
 import TrainingCard from './TrainingCard';
-import { logDOM } from '@testing-library/react';
 
 const Day = () => {
   const {id} = useParams();

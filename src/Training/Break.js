@@ -1,28 +1,29 @@
 import { useEffect, useState } from 'react';
 
 const Break = (props) => {
-  const {current, setDoBreak, id} = props;
+  const {current, setDoBreak, id, todayTraining} = props;
+  const {name, desc} = todayTraining[current];
   const [counter, setCounter] = useState(30);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setCounter(counter - 1), 1000);
-    if(counter == 0){
-      handleSetCurrent();
-    }
-    return () => clearTimeout(timeout);
-  }, [counter]);
 
   const handleSetCurrent = () => {
     setDoBreak(false);
   }
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setCounter(counter - 1), 1000);
+    if(counter === 0){
+      handleSetCurrent();
+    }
+    return () => clearTimeout(timeout);
+  }, [counter]);
 
   return (
     <div>
       <h1>Day {id}</h1>
       <p>Break {counter} </p>
       <button onClick={handleSetCurrent}>Next</button>
-      <p>Exercise {current+1}</p>
-      <p>Description</p>
+      <p>Next exercise {current+1} - {name}</p>
+      <p>{desc}</p>
     </div>
   )
 }
