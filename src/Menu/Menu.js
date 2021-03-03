@@ -1,23 +1,20 @@
-import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import Header from './Header';
+import MenuContent from './MenuContent';
 
-import DayCard from './DayCard';
+import { Grid } from '@material-ui/core';
 
 const Menu = () => {
-  const progress = useSelector((state) => state.progress.progress);
-  const plan = useSelector((state) => state.plan.plan);
-  let history = useHistory();
   return (
-    <div>
-      <h1>This is menu</h1>
-      <p>Current progress: {progress}</p>
-
-      {plan.days.map((day) => (
-        <DayCard id={day.dayId} key={day.dayId} />
-      ))}
-      
-      <div onClick={() => history.push(`/settings`)}>Settings</div>
-    </div>
+    <Grid container direction="column">
+      <Grid item>
+        <Header />
+      </Grid>
+      <Grid item container justify="center">
+        <Grid item xs={10} sm={6}>
+          <MenuContent />
+        </Grid>
+      </Grid>
+    </Grid>
   );
 }
 
