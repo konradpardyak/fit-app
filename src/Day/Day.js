@@ -1,26 +1,45 @@
 import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom";
-import { useSelector } from 'react-redux';
 
-import TrainingCard from './TrainingCard';
+import DayContent from './DayContent';
+
+import { Grid, AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  headerStyle: {
+    flex: 1
+  }
+});
 
 const Day = () => {
   const {id} = useParams();
   let history = useHistory();
-  const plan = useSelector((state) => state.plan.plan);
+  const classes = useStyles();
   
   return (
-    <div>
-      <h1>This is training day {id}</h1>
-      {plan.days[id-1].todayPlan.map((exercise) => {
-        const foundExercise = plan.exercisesList.find((searched) => (searched.exId === exercise.exId));
-        return <TrainingCard name={foundExercise.name} desc={foundExercise.desc} reps={exercise.reps} key={exercise.exId} />
-      })}
+    <Grid container direction="column">
+      <Grid item>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography className={classes.headerStyle}>Training - Day {id}</Typography>
+            <IconButton aria-label="go-back" color="inherit" onClick={() => history.goBack()}>
+              <ArrowBackIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      </Grid>
+      <Grid item container justify="center">
+        <Grid item xs={12} sm={6}>
+          <DayContent />
+        </Grid>
+      </Grid>
       
       <div onClick={() => history.push(`/training/${id}`)}>
         Start Training
       </div>
-    </div>
+    </Grid>
   );
 }
 
