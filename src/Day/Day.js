@@ -3,15 +3,21 @@ import { useParams } from "react-router-dom";
 
 import DayContent from './DayContent';
 
-import { Grid, AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
+import { Grid, AppBar, Toolbar, Typography, IconButton, Fab } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   headerStyle: {
     flex: 1
+  },
+  buttonStyle: {
+    position: "fixed",
+    bottom: theme.spacing(4),
+    left: "50%",
+    transform: "translateX(-50%)"
   }
-});
+}));
 
 const Day = () => {
   const {id} = useParams();
@@ -35,10 +41,9 @@ const Day = () => {
           <DayContent />
         </Grid>
       </Grid>
-      
-      <div onClick={() => history.push(`/training/${id}`)}>
-        Start Training
-      </div>
+      <Fab className={classes.buttonStyle} variant="extended" color="secondary" onClick={() => history.push(`/training/${id}`)}>
+        Start training
+      </Fab>
     </Grid>
   );
 }
