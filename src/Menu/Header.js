@@ -27,7 +27,7 @@ const Header = () => {
   };
   return (
     <AppBar position="static">
-      <Toolbar>
+      <Toolbar id="back-to-top-anchor">
         <Typography className={classes.headerStyle} >Fit App - Current progress: {progress}/30</Typography>
         <IconButton aria-label="menu" color="inherit" aria-haspopup="true" onClick={handleClick}>
           <MoreVertIcon />
