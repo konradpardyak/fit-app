@@ -1,10 +1,24 @@
 import { useEffect, useState } from 'react';
 
-const Ready = (props) => {
-  const {setCurrent, id, todayTraining} = props;
-  const {name, desc} = todayTraining[0];
+import TrainingHeader from './TrainingHeader';
+import TimeProgress from './TimeProgress';
+import TrainingButton from './TrainingButton';
+import TrainingDescription from './TrainingDescription';
 
-  const [counter, setCounter] = useState(5);
+import { Grid } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  containerStyle: {
+    height: "100vh"
+  }
+});
+
+const Ready = (props) => {
+  const {setCurrent, todayTraining} = props;
+  const {name, desc, reps} = todayTraining[0];
+  const [counter, setCounter] = useState(11);
+  const classes = useStyles();
 
   useEffect(() => {
     const timeout = setTimeout(() => setCounter(counter - 1), 1000);
@@ -19,13 +33,22 @@ const Ready = (props) => {
   }
 
   return (
-    <div>
-      <h1>Day {id}</h1>
-      <p>Ready? {counter} </p>
-      <button onClick={handleSetCurrent}>Start!</button>
-      <p>Get ready for exercise 1 - {name}</p>
-      <p>{desc}</p>
-    </div>
+    <Grid container className={classes.containerStyle} direction="column" justify="space-between">
+      <Grid item>
+        <TrainingHeader>Get ready!</TrainingHeader>
+      </Grid>
+      <Grid item>
+        <TimeProgress counter={counter} value={Math.round(100- ((counter-1)/10)*100)} />
+      </Grid>
+      <Grid item>
+        <TrainingButton onClick={handleSetCurrent}>Start</TrainingButton>
+      </Grid>
+      <Grid item container direction="row" justify="center">
+        <Grid item xs={12} sm={8} md={6}>
+          <TrainingDescription name={name} reps={reps} desc={desc} />
+        </Grid>
+      </Grid>
+    </Grid>
   )
 }
 

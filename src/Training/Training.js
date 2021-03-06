@@ -26,7 +26,7 @@ const Training = () => {
     <div>
       {
         current == null ? (<Ready setCurrent={setCurrent} id={id} todayTraining={todayTraining} />) :
-        doBreak ? (<Break current={current} setDoBreak={setDoBreak} id={id} todayTraining={todayTraining} />) : 
+        doBreak ? (<Break current={current} setDoBreak={setDoBreak} todayTraining={todayTraining} />) : 
         (<Train current={current} setCurrent={setCurrent} setDoBreak={setDoBreak} id={id} todayTraining={todayTraining} />)
         }
     </div>

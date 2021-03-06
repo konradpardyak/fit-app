@@ -3,12 +3,27 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { setProgress } from "../redux/ducks/progress";
 
+import TrainingHeader from './TrainingHeader';
+import TimeProgress from './TimeProgress';
+import TrainingButton from './TrainingButton';
+import TrainingDescription from './TrainingDescription';
+
+import { Grid } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  containerStyle: {
+    height: "100vh"
+  }
+});
+
 const Train = (props) => {
   const {current, setCurrent, setDoBreak, id, todayTraining} = props;
   const {name, desc, reps} = todayTraining[current];
-  const [counter, setCounter] = useState(15);
+  const [counter, setCounter] = useState(16);
   const dispatch = useDispatch();
   let history = useHistory();
+  const classes = useStyles();
 
   const handleSetProgress = () => {
     dispatch(setProgress(id));
@@ -21,7 +36,7 @@ const Train = (props) => {
       setDoBreak(true);
     } else {
       handleSetProgress();
-      history.goBack();
+      history.push(`/`);
     }
   }
 
@@ -34,14 +49,22 @@ const Train = (props) => {
   }, [counter]);
 
   return (
-    <div>
-      <h1>Day {id}</h1>
-      <p>Do! {counter} </p>
-      <button onClick={handleFinished}>Finished</button>
-      <p>Exercise {current+1} - {name}</p>
-      <p>Reps x {reps}</p>
-      <p>{desc}</p>
-    </div>
+    <Grid container className={classes.containerStyle} direction="column" justify="space-between">
+      <Grid item>
+        <TrainingHeader>{name}</TrainingHeader>
+      </Grid>
+      <Grid item>
+        <TimeProgress counter={counter} value={Math.round(100 - ((counter-1)/15)*100)} />
+      </Grid>
+      <Grid item>
+        <TrainingButton onClick={handleFinished}>Skip</TrainingButton>
+      </Grid>
+      <Grid item container direction="row" justify="center">
+        <Grid item xs={12} sm={8} md={6}>
+          <TrainingDescription name={name} reps={reps} desc={desc} />
+        </Grid>
+      </Grid>
+    </Grid>
   )
 }
 
