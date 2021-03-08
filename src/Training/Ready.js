@@ -4,6 +4,7 @@ import TrainingHeader from './TrainingHeader';
 import TimeProgress from './TimeProgress';
 import TrainingButton from './TrainingButton';
 import TrainingDescription from './TrainingDescription';
+import TrainingStepper from './TrainingStepper';
 
 import { Grid } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,7 +16,7 @@ const useStyles = makeStyles({
 });
 
 const Ready = (props) => {
-  const {setCurrent, todayTraining} = props;
+  const { setCurrent, todayTraining} = props;
   const {name, desc, reps} = todayTraining[0];
   const [counter, setCounter] = useState(11);
   const classes = useStyles();
@@ -34,6 +35,9 @@ const Ready = (props) => {
 
   return (
     <Grid container className={classes.containerStyle} direction="column" justify="space-between">
+      <Grid item>
+        <TrainingStepper waitingVariant={true} current={0} todayTraining={todayTraining} />
+      </Grid>
       <Grid item>
         <TrainingHeader>Get ready!</TrainingHeader>
       </Grid>

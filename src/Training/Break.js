@@ -4,6 +4,7 @@ import TrainingHeader from './TrainingHeader';
 import TimeProgress from './TimeProgress';
 import TrainingButton from './TrainingButton';
 import TrainingDescription from './TrainingDescription';
+import TrainingStepper from './TrainingStepper';
 
 import { Grid } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
@@ -34,6 +35,9 @@ const Break = (props) => {
 
   return (
     <Grid container className={classes.containerStyle} direction="column" justify="space-between">
+      <Grid item>
+        <TrainingStepper waitingVariant={true} current={current} todayTraining={todayTraining}  />
+      </Grid>
       <Grid item>
         <TrainingHeader>Break</TrainingHeader>
       </Grid>
