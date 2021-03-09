@@ -7,6 +7,9 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
+  root: {
+    background: "linear-gradient(135deg, #f54ea2, #ff7676)"
+  },
   headerStyle: {
     flex: 1
   }
@@ -26,7 +29,7 @@ const Header = () => {
     setAnchorEl(null);
   };
   return (
-    <AppBar position="static">
+    <AppBar position="static" className={classes.root}>
       <Toolbar id="back-to-top-anchor">
         <Typography className={classes.headerStyle} >Fit App - Current progress: {progress}/30</Typography>
         <IconButton aria-label="menu" color="inherit" aria-haspopup="true" onClick={handleClick}>
@@ -42,7 +45,7 @@ const Header = () => {
           <MenuItem onClick={() => history.push(`/settings`)}>Settings</MenuItem>
         </Menu>
       </Toolbar>
-      <LinearProgress color="secondary" variant="determinate" value={Math.round((progress/30)*100)} />
+      <LinearProgress color="primary" variant="determinate" value={Math.round((progress/30)*100)} />
     </AppBar>
   )
 }

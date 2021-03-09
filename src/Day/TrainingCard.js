@@ -32,7 +32,7 @@ const TrainingCard = (props) => {
   return (
     <>
       <ListItem button onClick={handleClickOpen}>
-        <ListItemText primary={name} secondary={`Reps x${reps}`} />
+        <ListItemText primary={name} secondary={`x${reps}`} />
       </ListItem>
       <Dialog onClose={handleClose} open={open}>
         <DialogTitle disableTypography className={classes.root}>

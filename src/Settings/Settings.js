@@ -8,6 +8,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
+  appBarStyle: {
+    background: "linear-gradient(135deg, #f54ea2, #ff7676)"
+  },
   headerStyle: {
     flex: 1
   }
@@ -25,7 +28,7 @@ const Settings = () => {
   return (
     <Grid container direction="column">
       <Grid item>
-        <AppBar position="static">
+        <AppBar position="static" className={classes.appBarStyle}>
           <Toolbar>
             <Typography className={classes.headerStyle}>Fit App</Typography>
             <IconButton aria-label="go-back" color="inherit" onClick={() => history.goBack()}>

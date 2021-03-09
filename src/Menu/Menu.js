@@ -6,10 +6,11 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  upButtonStyle: {
     position: "fixed",
     bottom: theme.spacing(2),
-    right: theme.spacing(2)
+    right: theme.spacing(2),
+    background: "linear-gradient(135deg, #f54ea2, #ff7676)"
   }
 }));
 
@@ -32,11 +33,11 @@ const Menu = () => {
         <Header />
       </Grid>
       <Grid item container justify="center">
-        <Grid item xs={10} sm={6} md={4}>
+        <Grid item xs={10} sm={6} md={4} lg={3}>
           <MenuContent />
         </Grid>
       </Grid>
-      <Fab color="secondary" size="medium" className={classes.root} onClick={handleClick}>
+      <Fab color="primary" size="medium" className={classes.upButtonStyle} onClick={handleClick}>
         <KeyboardArrowUpIcon />
       </Fab>
     </Grid>

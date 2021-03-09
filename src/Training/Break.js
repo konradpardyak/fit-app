@@ -12,6 +12,10 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles({
   containerStyle: {
     height: "100vh"
+  },
+  contentStyle: {
+    height: "75vh",
+    background: "linear-gradient(135deg, #f38181, #fce38a)"
   }
 });
 
@@ -35,23 +39,26 @@ const Break = (props) => {
 
   return (
     <Grid container className={classes.containerStyle} direction="column" justify="space-between">
-      <Grid item>
-        <TrainingStepper waitingVariant={true} current={current} todayTraining={todayTraining}  />
-      </Grid>
-      <Grid item>
-        <TrainingHeader>Break</TrainingHeader>
-      </Grid>
-      <Grid item>
-        <TimeProgress counter={counter} value={Math.round(100 - ((counter-1)/30)*100)} />
-      </Grid>
-      <Grid item>
-        <TrainingButton onClick={handleSetCurrent}>I'm ready</TrainingButton>
-      </Grid>
-      <Grid item container direction="row" justify="center">
-        <Grid item xs={12} sm={8} md={6}>
-          <TrainingDescription name={name} reps={reps} desc={desc} />
+
+      <Grid className={classes.contentStyle} item container direction="column" justify="space-around">
+        <Grid item>
+         <TrainingStepper waitingVariant={true} current={current} todayTraining={todayTraining}  />
+        </Grid>
+        <Grid item>
+          <TrainingHeader>Break</TrainingHeader>
+        </Grid>
+        <Grid item>
+          <TimeProgress counter={counter} value={Math.round(100 - ((counter-1)/30)*100)} />
+        </Grid>
+        <Grid item>
+          <TrainingButton onClick={handleSetCurrent}>I'm ready</TrainingButton>
         </Grid>
       </Grid>
+
+      <Grid item>
+        <TrainingDescription name={name} reps={reps} desc={desc} />
+      </Grid>
+
     </Grid>
   )
 }

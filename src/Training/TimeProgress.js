@@ -6,7 +6,9 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     display: "inline-flex",
     left: "50%",
-    transform: "translateX(-50%)"
+    transform: "translateX(-50%)",
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2)
   },
   innerBox: {
     top: 0,
@@ -17,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     display:"flex",
     alignItems:"center",
     justifyContent:"center"
+  },
+  typographyStyle: {
+    color: "#fff"
   }
 }));
 
@@ -25,9 +30,9 @@ const TimeProgress = (props) => {
   const classes = useStyles();
   return (
     <Box className={classes.outerBox}>
-      <CircularProgress size={140} variant="determinate" value={value} />
+      <CircularProgress size={140} variant="determinate" color="secondary" value={value} />
       <Box className={classes.innerBox}>
-        {counter && <Typography variant="h4" component="div">{`${counter-1}`}</Typography>}
+        {counter && <Typography className={classes.typographyStyle} variant="h4" component="div">{`${counter-1}`}</Typography>}
       </Box>
     </Box>
   );

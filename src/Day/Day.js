@@ -8,6 +8,9 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+  appBarStyle: {
+    background: "linear-gradient(135deg, #f54ea2, #ff7676)"
+  },
   headerStyle: {
     flex: 1
   },
@@ -15,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     bottom: theme.spacing(4),
     left: "50%",
-    transform: "translateX(-50%)"
+    transform: "translateX(-50%)",
+    background: "linear-gradient(135deg, #f54ea2, #ff7676)"
   }
 }));
 
@@ -27,7 +31,7 @@ const Day = () => {
   return (
     <Grid container direction="column">
       <Grid item>
-        <AppBar position="static">
+        <AppBar position="static" className={classes.appBarStyle}>
           <Toolbar>
             <Typography className={classes.headerStyle}>Training - Day {id}</Typography>
             <IconButton aria-label="go-back" color="inherit" onClick={() => history.goBack()}>
@@ -41,7 +45,7 @@ const Day = () => {
           <DayContent />
         </Grid>
       </Grid>
-      <Fab className={classes.buttonStyle} variant="extended" color="secondary" onClick={() => history.push(`/training/${id}`)}>
+      <Fab className={classes.buttonStyle} variant="extended" color="primary" onClick={() => history.push(`/training/${id}`)}>
         Start training
       </Fab>
     </Grid>
