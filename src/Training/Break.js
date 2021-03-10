@@ -20,9 +20,9 @@ const useStyles = makeStyles({
 });
 
 const Break = (props) => {
-  const {current, setDoBreak, todayTraining} = props;
+  const { breakTime, current, setDoBreak, todayTraining} = props;
   const {name, desc, reps} = todayTraining[current];
-  const [counter, setCounter] = useState(31);
+  const [counter, setCounter] = useState(breakTime +1);
   const classes = useStyles();
 
   const handleSetCurrent = () => {
@@ -45,13 +45,13 @@ const Break = (props) => {
          <TrainingStepper waitingVariant={true} current={current} todayTraining={todayTraining}  />
         </Grid>
         <Grid item>
-          <TrainingHeader>Break</TrainingHeader>
+          <TrainingHeader>{ current ? `Break` : `Ready`}</TrainingHeader>
         </Grid>
         <Grid item>
-          <TimeProgress counter={counter} value={Math.round(100 - ((counter-1)/30)*100)} />
+          <TimeProgress counter={counter} value={Math.round(100 - ((counter-1)/breakTime)*100)} />
         </Grid>
         <Grid item>
-          <TrainingButton onClick={handleSetCurrent}>I'm ready</TrainingButton>
+          <TrainingButton onClick={handleSetCurrent}>{ current ? `I'm ready` : `Start`}</TrainingButton>
         </Grid>
       </Grid>
 

@@ -2,14 +2,13 @@ import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
-import Ready from './Ready';
 import Train from './Train';
 import Break from './Break';
 
 const Training = () => {
   const {id} = useParams();
-  const [current, setCurrent] = useState(null);
-  const [doBreak, setDoBreak] = useState(false);
+  const [current, setCurrent] = useState(0);
+  const [doBreak, setDoBreak] = useState(true);
   const plan = useSelector((state) => state.plan.plan);
   const todayTraining = plan.days[id-1].todayPlan.map((exercise) => {
     const foundExercise = plan.exercisesList.find((searched) => (searched.exId === exercise.exId));
@@ -18,17 +17,16 @@ const Training = () => {
 
   useEffect(() => {
     return () => {
-      setCurrent(null);
+      setCurrent(0);
     }
   }, []);
 
   return (
     <div>
       {
-        current == null ? (<Ready setCurrent={setCurrent} id={id} todayTraining={todayTraining} />) :
-        doBreak ? (<Break current={current} setDoBreak={setDoBreak} todayTraining={todayTraining} />) : 
+        doBreak ? (<Break breakTime={current ? 30 : 15} current={current} setDoBreak={setDoBreak} todayTraining={todayTraining} />) : 
         (<Train current={current} setCurrent={setCurrent} setDoBreak={setDoBreak} id={id} todayTraining={todayTraining} />)
-        }
+      }
     </div>
   );
 }
