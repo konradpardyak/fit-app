@@ -12,7 +12,7 @@ const Training = () => {
   const plan = useSelector((state) => state.plan.plan);
   const todayTraining = plan.days[id-1].todayPlan.map((exercise) => {
     const foundExercise = plan.exercisesList.find((searched) => (searched.exId === exercise.exId));
-    return {name : foundExercise.name, desc : foundExercise.desc, reps : exercise.reps}
+    return {name : foundExercise.name, desc : foundExercise.desc, repeatMode : foundExercise.repeatMode, duration : foundExercise.duration, reps : exercise.reps}
   })
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Training = () => {
   return (
     <div>
       {
-        doBreak ? (<Break breakTime={current ? 30 : 15} current={current} setDoBreak={setDoBreak} todayTraining={todayTraining} />) : 
+        doBreak ? (<Break breakTime={current ? 30 : 10} current={current} setDoBreak={setDoBreak} todayTraining={todayTraining} />) : 
         (<Train current={current} setCurrent={setCurrent} setDoBreak={setDoBreak} id={id} todayTraining={todayTraining} />)
       }
     </div>

@@ -20,9 +20,9 @@ const useStyles = makeStyles({
 });
 
 const Break = (props) => {
-  const { breakTime, current, setDoBreak, todayTraining} = props;
-  const {name, desc, reps} = todayTraining[current];
-  const [counter, setCounter] = useState(breakTime +1);
+  const { breakTime, current, setDoBreak, todayTraining } = props;
+  const {name, desc, reps, repeatMode} = todayTraining[current];
+  const [counter, setCounter] = useState(breakTime);
   const classes = useStyles();
 
   const handleSetCurrent = () => {
@@ -31,7 +31,7 @@ const Break = (props) => {
 
   useEffect(() => {
     const timeout = setTimeout(() => setCounter(counter - 1), 1000);
-    if(counter === 0){
+    if(counter < 0){
       handleSetCurrent();
     }
     return () => clearTimeout(timeout);
@@ -42,13 +42,13 @@ const Break = (props) => {
 
       <Grid className={classes.contentStyle} item container direction="column" justify="space-around">
         <Grid item>
-         <TrainingStepper waitingVariant={true} current={current} todayTraining={todayTraining}  />
+         <TrainingStepper waitingVariant={true} current={current} todayTraining={todayTraining} />
         </Grid>
         <Grid item>
           <TrainingHeader>{ current ? `Break` : `Ready`}</TrainingHeader>
         </Grid>
         <Grid item>
-          <TimeProgress counter={counter} value={Math.round(100 - ((counter-1)/breakTime)*100)} />
+          <TimeProgress counter={ counter > 0 ? counter : "GO!"} value={Math.round(100 - (counter/breakTime)*100)} />
         </Grid>
         <Grid item>
           <TrainingButton onClick={handleSetCurrent}>{ current ? `I'm ready` : `Start`}</TrainingButton>
@@ -56,7 +56,7 @@ const Break = (props) => {
       </Grid>
 
       <Grid item>
-        <TrainingDescription name={name} reps={reps} desc={desc} />
+        <TrainingDescription name={name} reps={reps} desc={desc} repeatMode={repeatMode}/>
       </Grid>
 
     </Grid>

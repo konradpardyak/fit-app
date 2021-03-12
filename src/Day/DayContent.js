@@ -22,7 +22,7 @@ const DayContent = () => {
       <List>
         {plan.days[id-1].todayPlan.map((exercise) => {
           const foundExercise = plan.exercisesList.find((searched) => (searched.exId === exercise.exId));
-          return <TrainingCard name={foundExercise.name} desc={foundExercise.desc} reps={exercise.reps} key={exercise.exId} />
+          return <TrainingCard name={foundExercise.name} desc={foundExercise.desc} repeatMode={foundExercise.repeatMode} reps={exercise.reps} key={exercise.exId} />
         })}
       </List>
     </Grid>

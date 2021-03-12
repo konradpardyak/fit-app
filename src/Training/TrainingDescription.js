@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TrainingDescription = (props) => {
-  const { name, reps, desc } = props;
+  const { name, reps, desc, repeatMode } = props;
   const classes = useStyles();
 
   return (
@@ -24,7 +24,7 @@ const TrainingDescription = (props) => {
               <Typography gutterBottom variant="h5">{name}</Typography>
             </Grid>
             <Grid item>
-              <Typography gutterBottom variant="h5">{`x${reps}`}</Typography>
+              <Typography gutterBottom variant="h5">{ repeatMode ? `x${reps} ` : `${reps} seconds`}</Typography>
             </Grid>
           </Grid>
           <Typography color="textSecondary" variant="body2">{desc}</Typography>

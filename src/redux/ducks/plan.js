@@ -306,27 +306,37 @@ const initialState = {
       {
         exId: 1,
         name: "Push-ups",
-        desc: "Lie flat on your stomach. Place your palms flat on the ground at shoulder height, a little wider than your shoulder width. Keep your body upright. Raise your body up straightening your arms while still keeping your body upright."
+        desc: "Lie flat on your stomach. Place your palms flat on the ground at shoulder height, a little wider than your shoulder width. Keep your body upright. Raise your body up straightening your arms while still keeping your body upright.",
+        repeatMode: true,
+        duration: 3
       },
       {
         exId: 2,
         name: "Sit-ups",
-        desc: "Lie down, bend your knees, put your feet hip-width apart, clasp your hands behind your head and keep your elbows apart. Using your abdominal muscles, lift your torso up. Remember not to bring your chin too close to your chest."
+        desc: "Lie down, bend your knees, put your feet hip-width apart, clasp your hands behind your head and keep your elbows apart. Using your abdominal muscles, lift your torso up. Remember not to bring your chin too close to your chest.",
+        repeatMode: true,
+        duration: 4
       },
       {
         exId: 3,
         name: "Squats",
-        desc: "Stand straight while slightly straddling. The head should be straight. Look ahead. Keep your hands straight in front of you. Slowly start bending your knees while pushing your hips backward. Come back to the starting position by straightening your knees."
+        desc: "Stand straight while slightly straddling. The head should be straight. Look ahead. Keep your hands straight in front of you. Slowly start bending your knees while pushing your hips backward. Come back to the starting position by straightening your knees.",
+        repeatMode: true,
+        duration: 4
       },
       {
         exId: 4,
         name: "Plank",
-        desc: "Take the push-up position, except that the forearms are placed vertically on the ground. Raise your torso and try to keep it in a vertical line and keep this position."
+        desc: "Take the push-up position, except that the forearms are placed vertically on the ground. Raise your torso and try to keep it in a vertical line and keep this position.",
+        repeatMode: false,
+        duration: 1
       },
       {
         exId: 5,
         name: "Lunges",
-        desc: "Stand straight with your feet shoulder-width apart. Keep your back straight, hands loose. Lunge with your right foot until your thigh is parallel to the ground. Return to the starting position and repeat the movement with the other leg."
+        desc: "Stand straight with your feet shoulder-width apart. Keep your back straight, hands loose. Lunge with your right foot until your thigh is parallel to the ground. Return to the starting position and repeat the movement with the other leg.",
+        repeatMode: true,
+        duration: 5
       }
     ]
   }

@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TrainingCard = (props) => {
-  const {name, desc, reps } = props;
+  const {name, desc, reps, repeatMode } = props;
   const classes = useStyles(props);
   const [open, setOpen] = useState(false);
 
@@ -32,7 +32,7 @@ const TrainingCard = (props) => {
   return (
     <>
       <ListItem button onClick={handleClickOpen}>
-        <ListItemText primary={name} secondary={`x${reps}`} />
+        <ListItemText primary={name} secondary={ repeatMode ? `x${reps}` : `${reps} seconds`} />
       </ListItem>
       <Dialog onClose={handleClose} open={open}>
         <DialogTitle disableTypography className={classes.root}>

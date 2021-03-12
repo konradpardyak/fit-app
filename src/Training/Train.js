@@ -24,8 +24,8 @@ const useStyles = makeStyles({
 
 const Train = (props) => {
   const {current, setCurrent, setDoBreak, id, todayTraining} = props;
-  const {name, desc, reps} = todayTraining[current];
-  const [counter, setCounter] = useState(16);
+  const {name, desc, reps, repeatMode, duration} = todayTraining[current];
+  const [counter, setCounter] = useState(0);
   const dispatch = useDispatch();
   let history = useHistory();
   const classes = useStyles();
@@ -46,8 +46,12 @@ const Train = (props) => {
   }
 
   useEffect(() => {
-    const timeout = setTimeout(() => setCounter(counter - 1), 1000);
-    if(counter === 0){
+    setTimeout(() => setCounter(1), 100);
+  }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setCounter(counter + 1), (duration*1000));
+    if(counter > reps){
       handleFinished();
     }
     return () => clearTimeout(timeout);
@@ -64,7 +68,7 @@ const Train = (props) => {
           <TrainingHeader>{name}</TrainingHeader>
         </Grid>
         <Grid item>
-          <TimeProgress counter={counter} value={Math.round(100 - ((counter-1)/15)*100)} />
+          <TimeProgress counter={ counter > 0 ? counter : "1" } value={Math.round(((counter*duration)/(reps*duration))*100)} />
         </Grid>
        <Grid item>
          <TrainingButton onClick={handleFinished}>Skip</TrainingButton>
@@ -72,7 +76,7 @@ const Train = (props) => {
       </Grid>
 
       <Grid item>
-        <TrainingDescription name={name} reps={reps} desc={desc} />
+        <TrainingDescription name={name} reps={reps} desc={desc} repeatMode={repeatMode} />
       </Grid>
 
     </Grid>
