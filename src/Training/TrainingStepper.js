@@ -1,62 +1,96 @@
-import { Stepper, Step, StepLabel, StepConnector, StepIcon  } from '@material-ui/core';
+import { Stepper, Step, StepLabel, StepConnector, StepIcon, Typography  } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import clsx from "clsx";
+import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 
 const useStyles = makeStyles({
   root: {
     paddingTop: 0,
     paddingBottom: 0,
     background: "rgba(0,0,0,0)"
-  },
-  line: {
-    height: 3,
-    border: 0,
-    backgroundColor: 'red',
-    borderRadius: 0,
   }
 });
 
 const StyledConnector = withStyles((theme) => ({
-  alternativeLabel: {
-    top: 10,
-  },
   active: {
     "& $line": {
-      borderColor: theme.palette.success.light
+      borderColor: theme.palette.success.main
     }
   },
   completed: {
     "& $line": {
-      borderColor: theme.palette.success.light
+      borderColor: theme.palette.success.main
     }
   },
   line: {
     borderColor: theme.palette.secondary.main,
     borderTopWidth: 3,
-    borderRadius: 1,
-    marginLeft: "-8px"
+    borderRadius: 0,
+    marginLeft: "-18px",
+    marginRight: "-10px"
   }
 }))(StepConnector);
 
-const StyledStepIcon = withStyles((theme) => ({
+const useStyledStepIconStyles = makeStyles((theme) => ({
   root: {
     color: theme.palette.secondary.main,
-    "&$completed": {
-      color: theme.palette.success.light
-    },
-    "&$active": {
-      color: theme.palette.success.light
-    }
+    display: "flex",
+    alignItems: "center",
+    padding: 0
   },
   active: {
-    color: theme.palette.success.light
+    color: theme.palette.success.main
+  },
+  circle: {
+    width: 16,
+    height: 16,
+    margin: 2,
+    borderRadius: "50%",
+    border: "2px solid",
+    borderColor: "currentColor",
+    backgroundColor: "rgba(0,0,0,0)",
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    justifyContent:"center",
+  },
+  text: {
+    color: "currentColor",
+    position:"absolute",
+    textAlign: "center",
+    fontSize: 12,
+    fontWeight: "bold"
   },
   completed: {
-    zIndex: 1
-  },
-  iconContainer: {
-    padding: 0
+    color: theme.palette.success.main,
+    zIndex: 1,
+    width: 24,
+    height: 24,
   }
-}))(StepIcon);
+}));
+
+const StyledStepIcon = (props) => {
+  const classes = useStyledStepIconStyles();
+  const { active, completed, icon } = props;
+
+  console.log(props);
+
+  return (
+    <div
+      className={clsx(classes.root, {
+        [classes.active]: active
+      })}
+    >
+      {completed ? (
+        <CheckCircleOutlineIcon className={classes.completed} />
+      ) : (
+        <div className={classes.circle}>
+          <Typography className={classes.text}>{icon}</Typography>
+        </div>
+      )}
+    </div>
+  );
+}
 
 const TrainingStepper = (props) => {
   const { waitingVariant, current, todayTraining} = props;
