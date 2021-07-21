@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     height: "100vh"
   },
   contentStyle: {
-    height: "75vh",
+    height: "100%",
     background: "linear-gradient(45deg, #f38181, #fce38a)"
   }
 });
@@ -64,19 +64,18 @@ const Train = (props) => {
         <Grid item>
           <TrainingStepper waitingVariant={false} current={current} todayTraining={todayTraining} />
         </Grid>
-       <Grid item>
+        <Grid item>
           <TrainingHeader>{name}</TrainingHeader>
         </Grid>
         <Grid item>
           <TimeProgress counter={ counter > 0 ? counter : "1" } value={Math.round(((counter*duration)/(reps*duration))*100)} />
         </Grid>
-       <Grid item>
-         <TrainingButton onClick={handleFinished}>Skip</TrainingButton>
+        <Grid item>
+          <TrainingButton onClick={handleFinished}>Skip</TrainingButton>
         </Grid>
-      </Grid>
-
-      <Grid item>
-        <TrainingDescription name={name} reps={reps} desc={desc} repeatMode={repeatMode} />
+        <Grid item>
+          <TrainingDescription name={name} reps={reps} desc={desc} repeatMode={repeatMode} />
+        </Grid>
       </Grid>
 
     </Grid>

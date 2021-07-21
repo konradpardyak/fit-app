@@ -2,12 +2,14 @@ import { Box, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    background: "#fff",
-    height: "25vh"
-  },
   boxStyle: {
-    padding: theme.spacing(2)
+    minHeight: "25vh",
+    borderRadius: "1rem",
+    background: "#fff",
+    opacity: ".8",
+    padding: theme.spacing(2),
+    margin: theme.spacing(2),
+    marginBottom: "0"
   }
 }));
 
@@ -17,7 +19,7 @@ const TrainingDescription = (props) => {
 
   return (
     <Grid className={classes.root} container direction="row" justify="center">
-      <Grid item xs={12} sm={8} md={6}>
+      <Grid item xs={12} sm={10} md={6}>
         <Box className={classes.boxStyle}>
           <Grid container alignItems="center">
             <Grid item xs>

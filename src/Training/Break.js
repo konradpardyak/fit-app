@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     height: "100vh"
   },
   contentStyle: {
-    height: "75vh",
+    height: "100%",
     background: "linear-gradient(45deg, #f38181, #fce38a)"
   }
 });
@@ -53,10 +53,9 @@ const Break = (props) => {
         <Grid item>
           <TrainingButton onClick={handleSetCurrent}>{ current ? `I'm ready` : `Start`}</TrainingButton>
         </Grid>
-      </Grid>
-
-      <Grid item>
-        <TrainingDescription name={name} reps={reps} desc={desc} repeatMode={repeatMode}/>
+        <Grid item>
+          <TrainingDescription name={name} reps={reps} desc={desc} repeatMode={repeatMode}/>
+        </Grid>
       </Grid>
 
     </Grid>
